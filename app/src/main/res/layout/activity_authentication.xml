@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AuthenticationActivity"
+    android:orientation="vertical">
+
+   <com.airbnb.lottie.LottieAnimationView
+       android:id="@+id/lottieAnimationView"
+       android:layout_marginTop="@dimen/_40sdp"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/_300sdp"
+       app:lottie_rawRes="@raw/animation2"/>
+
+   <Button
+       android:id="@+id/btn_sign_in"
+       android:layout_width="@dimen/_200sdp"
+       android:layout_height="52dp"
+       android:textSize="@dimen/_12sdp"
+       android:layout_gravity="center"
+       android:layout_marginTop="@dimen/_20sdp"
+       android:fontFamily="@font/poppins"
+       android:text="Continue with google"
+       android:textColor="@color/black"
+       android:textStyle="bold">
+   </Button>
+
+</LinearLayout>

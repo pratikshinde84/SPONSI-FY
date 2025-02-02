@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "981265838114",
+    "project_id": "sponsi-fy-e1bb8",
+    "storage_bucket": "sponsi-fy-e1bb8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981265838114:android:6dfb25bf73d3b2ba0d5a7b",
+        "android_client_info": {
+          "package_name": "com.example.sponsi_fy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXkX9YvxURSB5Rrj1SvsybtjcEnncCxuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

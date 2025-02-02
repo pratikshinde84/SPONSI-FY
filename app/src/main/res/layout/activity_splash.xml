@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello welcome to Sponsi-Fy"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="sans-serif"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:textSize="@dimen/_22sdp"
+        android:textColor="@color/sky"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_35sdp"
+        android:text="Connecting Clubs with Sponsors, Empowering Events with Opportunities!"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:textSize="@dimen/_12sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:textColor="@color/sky"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_300sdp"
+        app:lottie_rawRes="@raw/anim1"/>
+
+</LinearLayout>

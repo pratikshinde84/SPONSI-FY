@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SPONSI-FY</string>
+    <string name="Web_client_id">981265838114-lm7bgsj5k9r8cs8bbseftm4kjjinnif8.apps.googleusercontent.com</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
