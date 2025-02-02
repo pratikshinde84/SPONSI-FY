@@ -32,7 +32,6 @@ public class AddFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add, container, false);
         Spinner eventTypeSpinner = view.findViewById(R.id.event_type);
 
-        // Define event types
         String[] items = {"Technology", "Education", "Sports", "Healthcare", "Charity"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
