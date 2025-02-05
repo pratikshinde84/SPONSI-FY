@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@color/white">
+    tools:context=".ContactUsActivity"
+    android:background="@drawable/img_5">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Us"
+        android:fontFamily="@font/poppins"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/home_grid"
+        android:id="@+id/contact_grid"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:columnCount="2"
-        app:rowCount="3"
-        android:layout_margin="8dp"
-        android:gravity="center">
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="8dp"
+        app:orientation="horizontal"
+        app:rowCount="3">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="@dimen/_120sdp"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp"
             app:layout_columnWeight="1"
-            android:id="@+id/card_technology">
+            android:id="@+id/card_email">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,16 +55,149 @@
                 android:padding="16dp">
 
                 <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:src="@drawable/technology"
-                    android:contentDescription="Technology Icon" />
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/email"
+                    android:contentDescription="Email Icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Technology"
+                    android:text="Email"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:id="@+id/card_phone"
+            app:layout_columnWeight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/phonecall"
+                    android:contentDescription="Phone Icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:id="@+id/card_insta"
+            app:layout_columnWeight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/instagram"
+                    android:contentDescription="Instagram Icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instagram"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- LeetCode Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:id="@+id/card_leet"
+            app:layout_columnWeight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/leetcode"
+                    android:contentDescription="LeetCode Icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LeetCode"
+                    android:fontFamily="@font/poppins"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- GitHub Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            android:id="@+id/card_git"
+            app:layout_columnWeight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/github"
+                    android:contentDescription="GitHub Icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GitHub"
                     android:textSize="16sp"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins"
@@ -50,14 +205,15 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- LinkedIn Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="@dimen/_120sdp"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp"
-            app:layout_columnWeight="1"
-            android:id="@+id/card_education">
+            android:id="@+id/card_linked_in"
+            app:layout_columnWeight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,195 +223,22 @@
                 android:padding="16dp">
 
                 <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:src="@drawable/education"
-                    android:contentDescription="Education Icon" />
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/linkedin"
+                    android:contentDescription="LinkedIn Icon" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Education"
+                    android:text="LinkedIn"
                     android:textSize="16sp"
-                    android:textColor="@color/white"
                     android:fontFamily="@font/poppins"
-                    android:layout_marginTop="8dp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_120sdp"
-            android:layout_margin="@dimen/_8sdp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:layout_columnWeight="1"
-            android:id="@+id/card_sports">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/sports"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:contentDescription="Sports Icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sports"
-                    android:textSize="16sp"
                     android:textColor="@color/white"
-                    android:fontFamily="@font/poppins"
-                    android:layout_marginTop="8dp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_120sdp"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:layout_columnWeight="1"
-            android:id="@+id/card_healthcare">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/healthcare"
-                    android:contentDescription="Healthcare Icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Healthcare"
-                    android:textSize="16sp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/poppins"
-                    android:layout_marginTop="8dp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_120sdp"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:layout_columnWeight="1"
-            android:id="@+id/card_government">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/government"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:contentDescription="Government Icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Government"
-                    android:textSize="16sp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/poppins"
-                    android:layout_marginTop="8dp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_120sdp"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:layout_columnWeight="1"
-            android:id="@+id/card_media">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:src="@drawable/media"
-                    android:contentDescription="Media Icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Media"
-                    android:textSize="16sp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/poppins"
                     android:layout_marginTop="8dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </androidx.gridlayout.widget.GridLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="bottom"
-        android:paddingTop="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Developed by Pratik Shinde"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins"
-            android:gravity="center" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Version 1.0.0"
-            android:textSize="12sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins"
-            android:gravity="center"
-            android:layout_marginTop="4dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="© 2025 Pratik Shinde. All rights reserved."
-            android:textSize="12sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins"
-            android:gravity="center"
-            android:layout_marginTop="4dp" />
-    </LinearLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

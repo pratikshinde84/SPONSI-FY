@@ -1,5 +1,6 @@
 package com.example.sponsi_fy;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -19,10 +21,14 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+import java.util.Objects;
+
 public class AddFragment extends Fragment {
 
-    private EditText eventName, eventDate, eventLocation, eventDuration, eventHeadName, mobileNumber, email, description;
+    private EditText eventName, eventLocation, eventDuration, eventHeadName, mobileNumber, email, description;
     private Button saveButton;
+    TextView eventDate;
 
     private DatabaseReference databaseReference;
 
@@ -32,7 +38,7 @@ public class AddFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add, container, false);
         Spinner eventTypeSpinner = view.findViewById(R.id.event_type);
 
-        String[] items = {"Technology", "Education", "Sports", "Healthcare", "Charity"};
+        String[] items = {"Technology", "Education", "Sports", "Healthcare", "Government","Media"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
                 android.R.layout.simple_spinner_item, items);
@@ -52,13 +58,30 @@ public class AddFragment extends Fragment {
         description = view.findViewById(R.id.event_desc);
         saveButton = view.findViewById(R.id.btn_add);
 
-        // Set save button click listener
+        eventDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        getActivity(),
+                        (view, year1, month1, dayOfMonth) -> {
+                            eventDate.setText(dayOfMonth + "/" + (month1 + 1) + "/" + year1);
+                        },
+                        year, month, day
+                );
+                datePickerDialog.show();
+            }
+        });
+
         saveButton.setOnClickListener(v -> saveEventToDatabase());
         return view;
     }
 
     private void saveEventToDatabase() {
-        // Retrieve username from SharedPreferences
+
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", null);
 
@@ -67,9 +90,8 @@ public class AddFragment extends Fragment {
             return;
         }
 
-        // Validate inputs
         String name = eventName.getText().toString().trim();
-        String type = ((Spinner) getView().findViewById(R.id.event_type)).getSelectedItem().toString().trim();
+        String type = ((Spinner) requireView().findViewById(R.id.event_type)).getSelectedItem().toString().trim();
         String date = eventDate.getText().toString().trim();
         String location = eventLocation.getText().toString().trim();
         String duration = eventDuration.getText().toString().trim();
@@ -78,7 +100,6 @@ public class AddFragment extends Fragment {
         String desc = description.getText().toString().trim();
         String mail = email.getText().toString().trim();
 
-        // Check if any required field is empty
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(type) || TextUtils.isEmpty(date) ||
                 TextUtils.isEmpty(location) || TextUtils.isEmpty(duration) ||
                 TextUtils.isEmpty(headName) || TextUtils.isEmpty(mobile)) {
@@ -86,10 +107,8 @@ public class AddFragment extends Fragment {
             return;
         }
 
-        // Prepare event object
         Event event = new Event(name, type, date, location, duration, headName, mobile, mail, desc);
 
-        // Save event to Firebase
         databaseReference.child(username).child("Posts").push().setValue(event)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(getContext(), "Event saved successfully!", Toast.LENGTH_SHORT).show();
@@ -109,7 +128,6 @@ public class AddFragment extends Fragment {
         description.setText("");
     }
 
-    // Event class (used to represent event data)
     public static class Event {
         public String eventName;
         public String eventType;
@@ -121,10 +139,8 @@ public class AddFragment extends Fragment {
         public String email;
         public String description;
 
-        // Default constructor required for Firebase
         public Event() {}
 
-        // Constructor to initialize the Event object with provided data
         public Event(String eventName, String eventType, String eventDate, String eventLocation,
                      String eventDuration, String eventHeadName, String mobileNumber, String email, String description) {
             this.eventName = eventName;

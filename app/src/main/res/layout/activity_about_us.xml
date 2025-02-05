@@ -15,6 +15,50 @@
         android:orientation="vertical"
         android:paddingBottom="24dp">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="About Developer"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pratik Shinde"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Second Year IT"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SGGSEIT Nanded"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
         <!-- App Name Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -75,7 +119,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sponsify was founded in 2023 to address the challenges faced by individuals and organizations in securing sponsorships."
+                    android:text="Sponsify was founded in 2025 to address the challenges faced by individuals and organizations in securing sponsorships."
                     android:textSize="16sp"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -272,7 +316,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Have questions or feedback? We’d love to hear from you! Reach out to us at support@sponsify.com or follow us on [social media links]."
+                    android:text="Have questions or feedback? We’d love to hear from you! Reach out to us at pratik216029@gmail.com"
                     android:textSize="16sp"
                     android:textColor="@color/black"/>
             </LinearLayout>

@@ -10,10 +10,10 @@
     android:background="#ffffff">
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_130sdp"
         android:layout_gravity="center"
-        android:src="@drawable/img_3"
+        android:src="@drawable/sponsifylogo"
         />
 
     <TextView
@@ -24,9 +24,8 @@
         android:textSize="40sp"
         android:textStyle="bold"
         android:textAlignment="center"
-        android:textColor="@color/sky"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins"
         />
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -36,8 +35,8 @@
         app:cardCornerRadius="30dp"
         app:cardElevation="30dp"
         app:cardMaxElevation="32dp"
-        android:layout_marginRight="46dp"
-        android:layout_marginLeft="46dp"
+        android:layout_marginRight="@dimen/_36sdp"
+        android:layout_marginLeft="@dimen/_36sdp"
         android:layout_marginTop="20dp"
         >
         <LinearLayout
@@ -69,7 +68,6 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
                         >
-
                     </ImageView>
 
                     <EditText
@@ -78,7 +76,7 @@
                         android:id="@+id/et_login_username"
                         android:hint="Username"
                         android:textColorHint="@color/grey"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/_16sdp"
                         android:textStyle="normal"
                         android:background="@color/white"
                         android:textAlignment="textStart"
@@ -87,7 +85,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="8dp"
                         android:inputType="text"
-                        android:fontFamily="@font/madimi"
+                        android:fontFamily="@font/poppins"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -123,7 +121,7 @@
                         android:id="@+id/et_login_password"
                         android:hint="Password"
                         android:textColorHint="@color/grey"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/_16sdp"
                         android:background="@color/white"
                         android:textStyle="normal"
                         android:textAlignment="textStart"
@@ -132,7 +130,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="8dp"
                         android:inputType="textPassword"
-                        android:fontFamily="@font/madimi"
+                        android:fontFamily="@font/poppins"
                         />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -179,7 +177,8 @@
         android:textSize="16sp"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins"
         android:layout_marginBottom="12dp"
         />
     <TextView
@@ -191,7 +190,8 @@
         android:textStyle="bold"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
         android:layout_marginBottom="12dp"
         />
 

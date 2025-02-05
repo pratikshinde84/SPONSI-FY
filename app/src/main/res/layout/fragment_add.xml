@@ -16,7 +16,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Title -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,7 +63,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Event Type -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,7 +79,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Enter Event Type"
+                        android:text="Select Event Type"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp"
@@ -92,12 +90,14 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/_10sdp"
                         android:hint="Event Name"
-                        android:textSize="@dimen/_12sdp"
-                        android:textColor="@color/black"
+                        android:scrollbarSize="@dimen/_50sdp"
+                        android:textColor="@color/white"
                         android:id="@+id/event_type"
                         android:background="@drawable/edittext_shape"
                         android:fontFamily="@font/poppins"
-                        />
+                        android:spinnerMode="dropdown"
+                        android:popupBackground="@color/black"
+                        android:dropDownWidth="wrap_content" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -124,7 +124,7 @@
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/poppins"/>
 
-                    <EditText
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Event Date (DD/MM/YYYY)"
@@ -132,13 +132,11 @@
                         android:textSize="@dimen/_12sdp"
                         android:paddingLeft="@dimen/_10sdp"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black"
                         android:background="@drawable/edittext_shape"
                         android:fontFamily="@font/poppins"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Event Location -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -359,6 +357,7 @@
                         android:fontFamily="@font/poppins"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
 
             <Button
                 android:layout_width="@dimen/_120sdp"

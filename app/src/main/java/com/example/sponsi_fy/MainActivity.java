@@ -1,6 +1,10 @@
 package com.example.sponsi_fy;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
@@ -24,13 +28,12 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Initialize BottomNavigationView
+
+
         btm_nav_view = findViewById(R.id.bottom_nav_view);
 
-        // Set default fragment (e.g., HomeFragment)
         loadFragment(new HomeFragment());
 
-        // Set listener for BottomNavigationView item selection
         btm_nav_view.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.home_fragment) {
@@ -46,13 +49,46 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        // Handle window insets (for edge-to-edge UI)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId()==R.id.about_us){
+            Intent i=new Intent(MainActivity.this, AboutUsActivity.class);
+            startActivity(i);
+        }else if(item.getItemId()==R.id.contact_us) {
+            Intent i=new Intent(MainActivity.this, ContactUsActivity.class);
+            startActivity(i);
+        }else if(item.getItemId()==R.id.logout) {
+            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isLogin", false);
+            editor.apply();
+            Intent i=new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(i);
+            finish();
+        }else if(item.getItemId()==R.id.settings) {
+            Intent i=new Intent(MainActivity.this,Settings_Activity.class);
+            startActivity(i);
+        } else if(item.getItemId()==R.id.feedback) {
+            Intent i=new Intent(MainActivity.this, FeedbackActivity.class);
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     // Helper method to load fragments
     private void loadFragment(Fragment fragment) {
