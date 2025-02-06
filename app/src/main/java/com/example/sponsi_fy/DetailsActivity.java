@@ -3,6 +3,7 @@ package com.example.sponsi_fy;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private TextView eventNameTextView, eventTypeTextView, eventLocationTextView, eventDateTextView;
     private TextView eventDurationTextView, eventHeadNameTextView, mobileNumberTextView, emailTextView, descriptionTextView;
-    private Button applyButton;
+    private Button applyButton,contactButton;
     private DatabaseReference mDatabase;
 
     @Override
@@ -50,6 +51,9 @@ public class DetailsActivity extends AppCompatActivity {
         emailTextView = findViewById(R.id.tv_email);
         descriptionTextView = findViewById(R.id.tv_description);
         applyButton = findViewById(R.id.btn_apply);
+        contactButton=findViewById(R.id.btn_contact);
+
+
 
         applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +127,6 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -167,5 +170,25 @@ public class DetailsActivity extends AppCompatActivity {
                 Log.e("Database Error", databaseError.getMessage());
             }
         });
+        contactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String mobile = mobileNumberTextView.getText().toString().trim();
+
+                if (!mobile.startsWith("+")) {
+                    mobile = "91" + mobile;
+                }
+
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse("https://wa.me/" + mobile));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(DetailsActivity.this, "Unable to open WhatsApp. Please check the app is installed and the number format is correct.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
+
 }

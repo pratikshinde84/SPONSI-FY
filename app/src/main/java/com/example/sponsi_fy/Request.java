@@ -6,7 +6,7 @@ public class Request {
     private String requestDetails;
 
     public Request() {
-        // Default constructor for Firebase
+
     }
 
     public Request(String requestId, String clubName, String sponsorName, String requestDetails) {
