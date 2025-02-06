@@ -13,6 +13,12 @@
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".RequestsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ApplicationActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetailsActivity"
             android:exported="false" />
         <activity

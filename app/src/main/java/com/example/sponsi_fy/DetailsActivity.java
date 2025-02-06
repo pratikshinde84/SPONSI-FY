@@ -1,11 +1,14 @@
 package com.example.sponsi_fy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,11 +30,9 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        // Get the username from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", null);
 
-        // Reference to the Firebase Realtime Database
         mDatabase = FirebaseDatabase.getInstance().getReference("Users_Details");
 
         String eventName = getIntent().getStringExtra("EVENT_NAME");
@@ -39,7 +40,6 @@ public class DetailsActivity extends AppCompatActivity {
         String eventLocation = getIntent().getStringExtra("EVENT_LOCATION");
         String eventDate = getIntent().getStringExtra("EVENT_DATE");
 
-        // Initialize UI components
         eventNameTextView = findViewById(R.id.tv_event_name);
         eventTypeTextView = findViewById(R.id.tv_event_type);
         eventLocationTextView = findViewById(R.id.tv_event_location);
@@ -51,25 +51,93 @@ public class DetailsActivity extends AppCompatActivity {
         descriptionTextView = findViewById(R.id.tv_description);
         applyButton = findViewById(R.id.btn_apply);
 
-        // Query the entire "Users_Details" to find the event in all users' posts
+        applyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String posterUsername = null;
+
+                        for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                            for (DataSnapshot postSnapshot : userSnapshot.child("Posts").getChildren()) {
+                                Event event = postSnapshot.getValue(Event.class);
+
+                                if (event != null && event.getEventName().equals(eventName) &&
+                                        event.getEventType().equals(eventType) &&
+                                        event.getEventLocation().equals(eventLocation) &&
+                                        event.getEventDate().equals(eventDate)) {
+                                    posterUsername = userSnapshot.getKey();
+                                    break;
+                                }
+                            }
+                            if (posterUsername != null) {
+                                break;
+                            }
+                        }
+
+                        if (posterUsername == null) {
+                            Log.d("Event Search", "Event poster not found.");
+                            return;
+                        }
+
+                        DatabaseReference posterRequestsRef = mDatabase.child(posterUsername).child("Requests");
+                        String requestKey = posterRequestsRef.push().getKey();
+
+                        if (requestKey != null) {
+                            posterRequestsRef.child(requestKey).setValue(new Event(
+                                    eventName, eventType, eventLocation, eventDate,
+                                    eventDurationTextView.getText().toString(),
+                                    eventHeadNameTextView.getText().toString(),
+                                    mobileNumberTextView.getText().toString(),
+                                    emailTextView.getText().toString(),
+                                    descriptionTextView.getText().toString()
+                            ));
+                        }
+
+                        DatabaseReference currentUserApplicationsRef = mDatabase.child(username).child("Applications");
+                        String applicationKey = currentUserApplicationsRef.push().getKey();
+
+                        if (applicationKey != null) {
+                            currentUserApplicationsRef.child(applicationKey).setValue(new Event(
+                                    eventName, eventType, eventLocation, eventDate,
+                                    eventDurationTextView.getText().toString(),
+                                    eventHeadNameTextView.getText().toString(),
+                                    mobileNumberTextView.getText().toString(),
+                                    emailTextView.getText().toString(),
+                                    descriptionTextView.getText().toString()
+                            ));
+                        }
+                        Toast.makeText(DetailsActivity.this, "Applied successfully for the event", Toast.LENGTH_SHORT).show();
+                        Intent i=new Intent(DetailsActivity.this,MainActivity.class);
+                        startActivity(i);
+                        finish();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e("Database Error", databaseError.getMessage());
+                    }
+                });
+            }
+        });
+
+
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 boolean eventFound = false;
 
-                // Loop through all users
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                    // Access the user's posts
                     for (DataSnapshot postSnapshot : userSnapshot.child("Posts").getChildren()) {
                         Event event = postSnapshot.getValue(Event.class);
 
-                        // Check if the event matches the criteria
                         if (event != null && event.getEventName().equals(eventName) &&
                                 event.getEventType().equals(eventType) &&
                                 event.getEventLocation().equals(eventLocation) &&
                                 event.getEventDate().equals(eventDate)) {
 
-                            // Set event details in the UI
                             eventNameTextView.setText(event.getEventName());
                             eventTypeTextView.setText(event.getEventType());
                             eventLocationTextView.setText(event.getEventLocation());
@@ -81,15 +149,14 @@ public class DetailsActivity extends AppCompatActivity {
                             descriptionTextView.setText(event.getDescription());
 
                             eventFound = true;
-                            break; // Break out of the loop once event is found
+                            break;
                         }
                     }
                     if (eventFound) {
-                        break; // Stop searching if the event is found
+                        break;
                     }
                 }
 
-                // Handle case where event wasn't found
                 if (!eventFound) {
                     Log.d("Event Search", "Event not found.");
                 }
@@ -97,7 +164,6 @@ public class DetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle database errors
                 Log.e("Database Error", databaseError.getMessage());
             }
         });

@@ -84,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
         } else if(item.getItemId()==R.id.feedback) {
             Intent i=new Intent(MainActivity.this, FeedbackActivity.class);
             startActivity(i);
+        } else if(item.getItemId()==R.id.apply){
+            Intent i=new Intent(MainActivity.this, ApplicationActivity.class);
+            startActivity(i);
+        } else if(item.getItemId()==R.id.requests){
+            Intent i=new Intent(MainActivity.this, ApplicationActivity.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

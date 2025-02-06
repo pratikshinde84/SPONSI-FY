@@ -38,4 +38,10 @@
         app:showAsAction="never"
         android:icon="@drawable/feedback"
         />
+    <item
+        android:id="@+id/requests"
+        android:title="Applied"
+        app:showAsAction="never"
+        android:icon="@drawable/feedback"
+        />
 </menu>

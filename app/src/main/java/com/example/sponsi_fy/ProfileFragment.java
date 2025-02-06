@@ -54,13 +54,11 @@ public class ProfileFragment extends Fragment {
         });
 
 
-        // Initialize Firebase Database and SharedPreferences
         databaseReference = FirebaseDatabase.getInstance().getReference("Users_Details");
         sharedPreferences = getActivity().getSharedPreferences("MyPrefs", getActivity().MODE_PRIVATE);
         String username = sharedPreferences.getString("username", null);
 
         if (username != null) {
-            // Load user profile data
             loadUserProfile(username);
         } else {
             Toast.makeText(getActivity(), "Username not found. Please log in again.", Toast.LENGTH_SHORT).show();

@@ -11,6 +11,20 @@ public class Event {
     private String email;
     private String description;
 
+    public Event(String eventName, String eventType, String eventLocation, String eventDate,
+                 String eventDuration, String eventHeadName, String mobileNumber,
+                 String email, String description) {
+        this.eventName = eventName;
+        this.eventType = eventType;
+        this.eventLocation = eventLocation;
+        this.eventDate = eventDate;
+        this.eventDuration = eventDuration;
+        this.eventHeadName = eventHeadName;
+        this.mobileNumber = mobileNumber;
+        this.email = email;
+        this.description = description;
+    }
+
     // Default constructor
     public Event() {}
 
