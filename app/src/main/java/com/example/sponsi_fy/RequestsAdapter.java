@@ -1,4 +1,5 @@
 package com.example.sponsi_fy;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,10 @@ import java.util.List;
 
 public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHolder> {
 
-    private final List<Request> requestsList;
+    private final List<Request> requestList;
 
-    public RequestsAdapter(List<Request> requestsList) {
-        this.requestsList = requestsList;
+    public RequestsAdapter(List<Request> requestList) {
+        this.requestList = requestList;
     }
 
     @NonNull
@@ -27,27 +28,33 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Request request = requestsList.get(position);
-        holder.requestId.setText(request.getRequestId());
-        holder.clubName.setText(request.getClubName());
-        holder.sponsorName.setText(request.getSponsorName());
-        holder.requestDetails.setText(request.getRequestDetails());
+        Request request = requestList.get(position);
+
+        holder.eventName.setText(request.getEventName());
+        holder.username.setText(request.getUsername());
+        holder.name.setText(request.getName());
+        holder.organization.setText(request.getOrganization());
+        holder.mobileNumber.setText(request.getMobileNumber());
+        holder.email.setText(request.getEmail());
     }
 
     @Override
     public int getItemCount() {
-        return requestsList.size();
+        return requestList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView requestId, clubName, sponsorName, requestDetails;
+        TextView eventName, username, name, organization, mobileNumber, email;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            requestId = itemView.findViewById(R.id.tv_request_id);
-            clubName = itemView.findViewById(R.id.tv_club_name);
-            sponsorName = itemView.findViewById(R.id.tv_sponsor_name);
-            requestDetails = itemView.findViewById(R.id.tv_request_details);
+
+            eventName = itemView.findViewById(R.id.tv_event_name);
+            username = itemView.findViewById(R.id.tv_username);
+            name = itemView.findViewById(R.id.tv_name);
+            organization = itemView.findViewById(R.id.tv_organization);
+            mobileNumber = itemView.findViewById(R.id.tv_mobile_number);
+            email = itemView.findViewById(R.id.tv_email);
         }
     }
 }

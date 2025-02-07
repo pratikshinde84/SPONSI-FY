@@ -1,5 +1,9 @@
 package com.example.sponsi_fy;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,8 +35,13 @@ public class RequestsActivity extends AppCompatActivity {
         adapter = new RequestsAdapter(requestList);
         recyclerView.setAdapter(adapter);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Requests");
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", null);
 
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("Users_Details")
+                .child(username)
+                .child("Requests");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -48,7 +57,7 @@ public class RequestsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle errors here
+                Toast.makeText(RequestsActivity.this,"Error hai",Toast.LENGTH_SHORT).show();
             }
         });
     }

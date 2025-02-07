@@ -53,70 +53,81 @@ public class DetailsActivity extends AppCompatActivity {
         applyButton = findViewById(R.id.btn_apply);
         contactButton=findViewById(R.id.btn_contact);
 
-
-
         applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                mDatabase.child(username).child("Profile").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        String posterUsername = null;
+                        if (dataSnapshot.exists()) {
+                            String name = dataSnapshot.child("name").getValue(String.class);
+                            String organization = dataSnapshot.child("organization").getValue(String.class);
+                            String email = dataSnapshot.child("email").getValue(String.class);
+                            String mobile = dataSnapshot.child("mobile").getValue(String.class);
 
-                        for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-                            for (DataSnapshot postSnapshot : userSnapshot.child("Posts").getChildren()) {
-                                Event event = postSnapshot.getValue(Event.class);
+                            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    String posterUsername = null;
 
-                                if (event != null && event.getEventName().equals(eventName) &&
-                                        event.getEventType().equals(eventType) &&
-                                        event.getEventLocation().equals(eventLocation) &&
-                                        event.getEventDate().equals(eventDate)) {
-                                    posterUsername = userSnapshot.getKey();
-                                    break;
+                                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                        for (DataSnapshot postSnapshot : userSnapshot.child("Posts").getChildren()) {
+                                            Event event = postSnapshot.getValue(Event.class);
+
+                                            if (event != null && event.getEventName().equals(eventName) &&
+                                                    event.getEventType().equals(eventType) &&
+                                                    event.getEventLocation().equals(eventLocation) &&
+                                                    event.getEventDate().equals(eventDate)) {
+                                                posterUsername = userSnapshot.getKey();
+                                                break;
+                                            }
+                                        }
+                                        if (posterUsername != null) {
+                                            break;
+                                        }
+                                    }
+
+                                    if (posterUsername == null) {
+                                        Log.d("Event Search", "Event poster not found.");
+                                        return;
+                                    }
+
+                                    DatabaseReference posterRequestsRef = mDatabase.child(posterUsername).child("Requests");
+                                    String requestKey = posterRequestsRef.push().getKey();
+
+                                    if (requestKey != null) {
+                                        posterRequestsRef.child(eventName).setValue(new User(
+                                                username, name, organization, email, mobile, eventName
+                                        ));
+                                    }
+
+                                    DatabaseReference currentUserApplicationsRef = mDatabase.child(username).child("Applications");
+                                    String applicationKey = currentUserApplicationsRef.push().getKey();
+
+                                    if (applicationKey != null) {
+                                        currentUserApplicationsRef.child(applicationKey).setValue(new Event(
+                                                eventName, eventType, eventLocation, eventDate,
+                                                eventDurationTextView.getText().toString(),
+                                                eventHeadNameTextView.getText().toString(),
+                                                mobileNumberTextView.getText().toString(),
+                                                emailTextView.getText().toString(),
+                                                descriptionTextView.getText().toString()
+                                        ));
+                                    }
+                                    Toast.makeText(DetailsActivity.this, "Applied successfully for the event", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(DetailsActivity.this, MainActivity.class);
+                                    startActivity(i);
+                                    finish();
                                 }
-                            }
-                            if (posterUsername != null) {
-                                break;
-                            }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    Log.e("Database Error", databaseError.getMessage());
+                                }
+                            });
+                        } else {
+                            Toast.makeText(DetailsActivity.this, "User profile not found in database.", Toast.LENGTH_SHORT).show();
                         }
-
-                        if (posterUsername == null) {
-                            Log.d("Event Search", "Event poster not found.");
-                            return;
-                        }
-
-                        DatabaseReference posterRequestsRef = mDatabase.child(posterUsername).child("Requests");
-                        String requestKey = posterRequestsRef.push().getKey();
-
-                        if (requestKey != null) {
-                            posterRequestsRef.child(requestKey).setValue(new Event(
-                                    eventName, eventType, eventLocation, eventDate,
-                                    eventDurationTextView.getText().toString(),
-                                    eventHeadNameTextView.getText().toString(),
-                                    mobileNumberTextView.getText().toString(),
-                                    emailTextView.getText().toString(),
-                                    descriptionTextView.getText().toString()
-                            ));
-                        }
-
-                        DatabaseReference currentUserApplicationsRef = mDatabase.child(username).child("Applications");
-                        String applicationKey = currentUserApplicationsRef.push().getKey();
-
-                        if (applicationKey != null) {
-                            currentUserApplicationsRef.child(applicationKey).setValue(new Event(
-                                    eventName, eventType, eventLocation, eventDate,
-                                    eventDurationTextView.getText().toString(),
-                                    eventHeadNameTextView.getText().toString(),
-                                    mobileNumberTextView.getText().toString(),
-                                    emailTextView.getText().toString(),
-                                    descriptionTextView.getText().toString()
-                            ));
-                        }
-                        Toast.makeText(DetailsActivity.this, "Applied successfully for the event", Toast.LENGTH_SHORT).show();
-                        Intent i=new Intent(DetailsActivity.this,MainActivity.class);
-                        startActivity(i);
-                        finish();
-
                     }
 
                     @Override
@@ -126,6 +137,8 @@ public class DetailsActivity extends AppCompatActivity {
                 });
             }
         });
+
+
 
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

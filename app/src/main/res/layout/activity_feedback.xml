@@ -15,6 +15,8 @@
             android:background="@drawable/edittext_shape"
             android:padding="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_18sdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:layout_marginHorizontal="@dimen/_18sdp"
             android:hint="Your Name" />
 
@@ -25,6 +27,8 @@
             android:hint="Your Feedback"
             android:layout_marginTop="@dimen/_18sdp"
             android:lines="5"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:background="@drawable/edittext_shape"
             android:layout_marginHorizontal="@dimen/_18sdp"
             android:padding="@dimen/_12sdp"
@@ -35,6 +39,7 @@
             android:layout_width="@dimen/_120sdp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_18sdp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:background="@drawable/circle_button_background"
             android:text="Submit" />

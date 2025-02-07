@@ -3,7 +3,7 @@ public class Application {
     private String eventName, eventType, eventLocation, eventDate;
 
     public Application() {
-        // Default constructor required for calls to DataSnapshot.getValue(Application.class)
+
     }
 
     public Application(String eventName, String eventType, String eventLocation, String eventDate) {

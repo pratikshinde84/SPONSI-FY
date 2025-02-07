@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             Intent i=new Intent(MainActivity.this, FeedbackActivity.class);
             startActivity(i);
         } else if(item.getItemId()==R.id.apply){
-            Intent i=new Intent(MainActivity.this, ApplicationActivity.class);
+            Intent i=new Intent(MainActivity.this, RequestsActivity.class);
             startActivity(i);
         } else if(item.getItemId()==R.id.requests){
             Intent i=new Intent(MainActivity.this, ApplicationActivity.class);

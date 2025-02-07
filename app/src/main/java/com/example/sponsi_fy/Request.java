@@ -1,34 +1,69 @@
 package com.example.sponsi_fy;
 public class Request {
-    private String requestId;
-    private String clubName;
-    private String sponsorName;
-    private String requestDetails;
+    private String email;
+    private String eventName;
+    private String mobileNumber;
+    private String name;
+    private String organization;
+    private String username;
 
     public Request() {
-
     }
 
-    public Request(String requestId, String clubName, String sponsorName, String requestDetails) {
-        this.requestId = requestId;
-        this.clubName = clubName;
-        this.sponsorName = sponsorName;
-        this.requestDetails = requestDetails;
+    public Request(String email, String eventName, String mobileNumber, String name, String organization, String username) {
+        this.email = email;
+        this.eventName = eventName;
+        this.mobileNumber = mobileNumber;
+        this.name = name;
+        this.organization = organization;
+        this.username = username;
     }
 
-    public String getRequestId() {
-        return requestId;
+    public String getEmail() {
+        return email;
     }
 
-    public String getClubName() {
-        return clubName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getSponsorName() {
-        return sponsorName;
+    public String getEventName() {
+        return eventName;
     }
 
-    public String getRequestDetails() {
-        return requestDetails;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
